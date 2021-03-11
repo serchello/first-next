@@ -1,3 +1,4 @@
+import React, {useState, useEffect } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Navbar from '../components/navbar'
@@ -5,21 +6,27 @@ import SideMenu from '../components/sideMenu'
 import Carousel from '../components/carousel'
 import MovieList from '../components/movieList'
 import Footer from '../components/footer'
-import React, {useState} from 'react'
 
+
+// {} потому что не делаю export default. Так как делаю import из index.js то могу не писать в from ('../actions/index')
+import {getMovies} from '../actions'
 
 
 export default function Home() {
+ 
+  // || [] означает что если getMovies не вернет ничего - то movies получит пустой Array 
+  //const movies  = getMovies() || []
 
-  const [count, setCount] = useState(0)
+  const [movies, setMovies] = useState([])
 
-  const increment = () =>{
-      setCount(count + 1)
-  }
-
-  const decrement = () => {
-        setCount(count -1)
-  }
+  useEffect(() => {  
+    const fetchData = async () => {
+      const resMovies = await getMovies()
+      setMovies(resMovies)
+    }
+    fetchData()
+  }, [])
+  
 
   return (
       <div>
@@ -35,25 +42,20 @@ export default function Home() {
         <div className="home-page">
         <div className="container">
    
-            <button onClick={increment} className="btn btn-primary">Increment Number</button>
-            <button onClick={decrement} className="btn btn-primary">Decrement Number</button>
-
             <div className="row">
 
               <div className="col-lg-3">
               <SideMenu
-                myCounter={count}
+               
                 appName="Maria DB"
-                clickHandler={()=> console.log("Hello World")}
-                string={'serchello'}
-                
+               
                 />
               </div>
 
               <div className="col-lg-9">
                   <Carousel />
                 <div className="row">
-                  <MovieList count={ count} />
+                <MovieList movies={ movies }/>
                 </div>
             </div>
             
