@@ -6,29 +6,26 @@ import SideMenu from '../components/sideMenu'
 import Carousel from '../components/carousel'
 import MovieList from '../components/movieList'
 import Footer from '../components/footer'
-
-
-// {} потому что не делаю export default. Так как делаю import из index.js то могу не писать в from ('../actions/index')
 import {getMovies} from '../actions'
 
+class Home extends React.Component{
 
-export default function Home() {
- 
-  // || [] означает что если getMovies не вернет ничего - то movies получит пустой Array 
-  //const movies  = getMovies() || []
-
-  const [movies, setMovies] = useState([])
-
-  useEffect(() => {  
-    const fetchData = async () => {
-      const resMovies = await getMovies()
-      setMovies(resMovies)
+  constructor(props) {
+    super(props)
+    this.state = {
+      movies:[]
     }
-    fetchData()
-  }, [])
-  
+  }
+ 
+  componentDidMount() {
+    getMovies().then((movies) => {
+      this.setState({movies})
+    }) 
+  }
 
-  return (
+  render() {
+    const {movies} = this.state
+    return (
       <div>
         <Head>
           <title>Home</title>
@@ -41,14 +38,10 @@ export default function Home() {
         <Navbar/>
         <div className="home-page">
         <div className="container">
-   
             <div className="row">
-
               <div className="col-lg-3">
               <SideMenu
-               
                 appName="Maria DB"
-               
                 />
               </div>
 
@@ -57,7 +50,7 @@ export default function Home() {
                 <div className="row">
                 <MovieList movies={ movies }/>
                 </div>
-            </div>
+              </div>
             
             </div>
           </div>
@@ -72,4 +65,7 @@ export default function Home() {
       </style>
     </div>
   )
+  }
 }
+
+export default Home
