@@ -13,19 +13,19 @@ const Navbar = () => {
             <ul className="navbar-nav ml-auto">
               <li className="nav-item active">
                 <Link href="/">
-                  <a className="nav-link" href="#">Home
+                  <a className="nav-link">Home
                     <span className="sr-only">(current)</span>
                   </a>
                 </Link>  
               </li>
               <li className="nav-item">
-                <Link href="/about"><a className="nav-link" href="#">About</a></Link>
+                <Link href="/about"><a className="nav-link">About</a></Link>
               </li>
               <li className="nav-item">
-                <Link href="/services"><a className="nav-link" href="#">Services</a></Link>
+                <Link href="/services"><a className="nav-link">Services</a></Link>
               </li>
               <li className="nav-item">
-                <Link href="/contact"><a className="nav-link" href="#">Contact</a></Link>
+                <Link href="/contact"><a className="nav-link">Contact</a></Link>
               </li>
             </ul>
           </div>
