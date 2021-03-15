@@ -4,12 +4,13 @@ import SideMenu from '../components/sideMenu'
 import Carousel from '../components/carousel'
 import MovieList from '../components/movieList'
 
-import {getMovies} from '../actions'
+import {getMovies,getCategories} from '../actions'
 
 const Home = (props) =>{
 
   console.log(JSON.stringify(props.images))
-  const { images } = props
+  const { images, categories } = props
+
     return (
       <div>
         
@@ -18,7 +19,8 @@ const Home = (props) =>{
             <div className="row">
               <div className="col-lg-3">
               <SideMenu
-                appName="Maria DB"
+                  appName="Maria DB"
+                  categories={categories}
                 />
               </div>
 
@@ -40,6 +42,8 @@ const Home = (props) =>{
 
 Home.getInitialProps = async () => {
   const movies = await getMovies()
+  const categories = await getCategories()
+
   const images = movies.map(movie => {
     return {
       id: `image-${movie.id}`,
@@ -47,7 +51,7 @@ Home.getInitialProps = async () => {
       name: movie.name 
     }
   })
-  return { movies, images}
+  return { movies, images, categories}
 }
 
 export default Home
