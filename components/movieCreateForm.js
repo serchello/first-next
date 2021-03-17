@@ -128,11 +128,12 @@ const MovieCreateForm = (props) => {
           multiple
           className="form-control"
           id="genre">
-          <option>drama</option>
-          <option>music</option>
-          <option>adventure</option>
-          <option>historical</option>
-          <option>action</option>
+          <option>Action</option>
+          <option>Adventure</option>
+          <option>Drama</option>
+          <option>Music</option>
+          <option>Historical</option>
+         
         </select>
       </div>
       <button onClick={submitForm} type="button" className="btn btn-primary">{ props.submitButtton || "Create" }</button>
