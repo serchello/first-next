@@ -3,14 +3,19 @@ import {useState} from 'react'
 
 const MovieCreateForm = (props) => {
   
-  const [form, setForm] = useState({
+  const defaultData = {
     name: '',
     description: '',
     rating: '',
     image: '',
     cover: '',
     longDesc: ''
-  })
+  }
+
+  const formData = props.initialData ? { ...props.initialData } : defaultData
+  // const submitButtonName = props.submitButtton ? props.submitButtton : "Create"
+
+  const [form, setForm] = useState(formData)
 
   const handleChange = (event) => {
     const target = event.target
@@ -130,7 +135,7 @@ const MovieCreateForm = (props) => {
           <option>action</option>
         </select>
       </div>
-       <button onClick={ submitForm }type="button" className="btn btn-primary">Create</button>
+      <button onClick={submitForm} type="button" className="btn btn-primary">{ props.submitButtton || "Create" }</button>
     </form>
   )
 }
