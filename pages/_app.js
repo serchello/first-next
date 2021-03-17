@@ -1,8 +1,9 @@
 import '../styles/globals.css'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import '../styles/style.css'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
+
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -22,7 +23,8 @@ function MyApp({ Component, pageProps }) {
 
       <Footer />
       <style jsx>{`
-        .base-page{padding-top:70px;}
+        .base-page{padding-top:70px; padding-bottom:160px;}
+
       `}
       </style>
     </>  

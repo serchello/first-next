@@ -11,7 +11,7 @@ const Home = (props) =>{
   // console.log(JSON.stringify(props.images))
   const { images, categories } = props
   // For filter category
-  const [filter, setFilter] = useState('all')
+  const [filter, setFilter] = useState('All')
 
   const changeCategory = category => {
     setFilter(category)
@@ -25,10 +25,9 @@ const Home = (props) =>{
     return movies.filter((movie) => {
       return movie.genre && movie.genre.includes(filter)
     })
-
   }
 
-    return (
+  return (
       <div>
         
         <div className="home-page">
@@ -57,7 +56,6 @@ const Home = (props) =>{
       
     </div>
   )
-  
 }
 
 Home.getInitialProps = async () => {
